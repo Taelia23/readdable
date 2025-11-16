@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Website Title</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Accessibility: Good color contrast & descriptive metadata -->
+    <meta name="description" content="A website created from course wireframes with accessibility in mind." />
+</head>
+
+<body>
+    <!-- Accessible Skip Link -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav aria-label="Main navigation">
+        <ul class="nav">
+            <li><a href="#home" aria-current="page">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Section -->
+    <header id="home">
+        <h1>Welcome to Readable</h1>
+        <p>This website is built for writers.</p>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+
+        <section id="about">
+            <h2>About</h2>
+            <p>
+                Readable is a free website where those that love writing can come and write 
+              sharing your thoughts and ideas with everyone on the platform.
+            </p>
+            
+            <!-- Accessible image with alt text -->
+            <img src="images/example.jpg" alt="Description of the displayed image" />
+        </section>
+
+        <section id="interactive">
+            <h2>Interactive JavaScript Feature</h2>
+            <button id="colorButton">Click me for a surprise</button>
+            <p id="message" aria-live="polite"></p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Nataelia Cliff</p>
+    </footer>
+
+    <!-- External JS -->
+    <script src="script.js"></script>
+</body>
+</html>
