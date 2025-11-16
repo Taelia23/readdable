@@ -3,46 +3,36 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Website Title</title>
-
-    <!-- External CSS -->
+    <title>Readable Journal</title>
     <link rel="stylesheet" href="styles.css" />
-
-    <!-- Accessibility: Good color contrast & descriptive metadata -->
-    <meta name="description" content="A website created from course wireframes with accessibility in mind." />
+    <meta name="description" content="A writing and journaling platform with accessibility in mind." />
 </head>
 
 <body>
-    <!-- Accessible Skip Link -->
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <!-- Navigation -->
     <nav aria-label="Main navigation">
         <ul class="nav">
             <li><a href="#home" aria-current="page">Home</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#journal">Journal</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- Header Section -->
     <header id="home">
         <h1>Welcome to Readable</h1>
-        <p>This website is built for writers.</p>
+        <p>A space for writers to create and share.</p>
     </header>
 
-    <!-- Main Content -->
     <main id="main-content">
 
         <section id="about">
             <h2>About</h2>
             <p>
-                Readable is a free website where those that love writing can come and write 
-              sharing your thoughts and ideas with everyone on the platform.
+                Readable is a free platform for writers to express thoughts and ideas. Share your creativity and connect with others.
             </p>
-            
-            <!-- Accessible image with alt text -->
-            <img src="images/example.jpg" alt="Description of the displayed image" />
+            <img src="images/example.jpg" alt="A sample image representing writing and creativity" />
         </section>
 
         <section id="interactive">
@@ -51,14 +41,58 @@
             <p id="message" aria-live="polite"></p>
         </section>
 
+        <!-- JOURNAL SECTION ADDED -->
+        <section id="journal">
+            <h2>Start Writing</h2>
+            <textarea id="journalInput" placeholder="Write your thoughts..."></textarea>
+            <button onclick="saveEntry()">Save Entry</button>
+
+            <div class="entry-list" id="entryList"></div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Have questions? Reach us at:</p>
+            <p><strong>Email:</strong> support@readable.com</p>
+        </section>
+
     </main>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2025 Nataelia Cliff</p>
     </footer>
 
-    <!-- External JS -->
-    <script src="script.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        loadEntries();
+    });
+
+    function saveEntry() {
+        const text = document.getElementById("journalInput").value.trim();
+        if (!text) return;
+
+        const entries = JSON.parse(localStorage.getItem("journalEntries") || "[]");
+        entries.unshift({ text, date: new Date().toLocaleString() });
+        localStorage.setItem("journalEntries", JSON.stringify(entries));
+
+        document.getElementById("journalInput").value = "";
+        loadEntries();
+    }
+
+    function loadEntries() {
+        const container = document.getElementById("entryList");
+        container.innerHTML = "";
+
+        const entries = JSON.parse(localStorage.getItem("journalEntries") || "[]");
+
+        entries.forEach(entry => {
+            const div = document.createElement("div");
+            div.className = "entry";
+            div.textContent = `${entry.date}:\n${entry.text}`;
+            container.appendChild(div);
+        });
+    }
+</script>
+
 </body>
 </html>
